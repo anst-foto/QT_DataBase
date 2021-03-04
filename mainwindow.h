@@ -4,7 +4,8 @@
 #include <QMainWindow>
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include <QMessageBox>
+
+#include "MessageBox.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

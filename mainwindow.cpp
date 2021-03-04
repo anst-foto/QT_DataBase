@@ -36,17 +36,9 @@ void MainWindow::on_button_LogIn_clicked()
         query.exec(sql);
 
         if (query.next()) {
-            QMessageBox msgBox;
-            msgBox.setText("Вы успешно авторизовались");
-            msgBox.setIcon(QMessageBox::Information);
-            msgBox.setStandardButtons(QMessageBox::Ok);
-            msgBox.exec();
+            MessageBoxInfo("Вы успешно авторизовались");
         } else {
-            QMessageBox msgBox;
-            msgBox.setText("Вы ввели неверные данные");
-            msgBox.setIcon(QMessageBox::Warning);
-            msgBox.setStandardButtons(QMessageBox::Ok);
-            msgBox.exec();
+            MessageBoxWarning("Неправильно указан логин или пароль");
         }
 
     } else {
