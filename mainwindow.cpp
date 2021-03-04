@@ -22,27 +22,23 @@ void MainWindow::on_button_Clear_clicked()
 
 void MainWindow::on_button_LogIn_clicked()
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("C:\\Programming\\Temp\\test_users.sqlite");
+    DataBase db("C:\\Programming\\Temp\\test_users.sqlite");
 
-    if  (db.open()) {
-        ui->statusbar->showMessage("Подключились к БД");
+    db.Connect();
 
-        QString login = ui->input_Login->text();
-        QString password = ui->input_Password->text();
+    QString login = ui->input_Login->text();
+    QString password = ui->input_Password->text();
 
-        QString sql = "SELECT * FROM table_account WHERE login = '" + login + "' AND password = '" + password + "'";
-        QSqlQuery query;
-        query.exec(sql);
+    AccountModel account = db.CheckAccount(login, password);
 
-        if (query.next()) {
-            MessageBoxInfo("Вы успешно авторизовались");
-        } else {
-            MessageBoxWarning("Неправильно указан логин или пароль");
-        }
+    if (account.id != 0) {
+        MessageBoxInfo("Вы успешно авторизовались");
 
+        QString msg = account.login + " " + account.password;
+        ui->statusbar->showMessage(msg);
     } else {
-        ui->statusbar->showMessage("Не подключились к БД");
+        MessageBoxWarning("Вам не удалось авторизоваться");
     }
-    db.close();
+
+    db.Disconnect();
 }

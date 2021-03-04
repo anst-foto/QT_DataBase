@@ -2,10 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QSqlDatabase>
-#include <QSqlQuery>
 
 #include "MessageBox.h"
+#include "database.h"
+#include "AccountModel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }

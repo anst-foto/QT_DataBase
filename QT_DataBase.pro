@@ -10,11 +10,14 @@ CONFIG += c++11
 
 SOURCES += \
     MessageBox.cpp \
+    database.cpp \
     main.cpp \
     mainwindow.cpp
 
 HEADERS += \
+    AccountModel.h \
     MessageBox.h \
+    database.h \
     mainwindow.h
 
 FORMS += \
